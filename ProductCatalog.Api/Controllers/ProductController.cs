@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.Application.Dto.Request;
+using ProductCatalog.Application.Dto.Response;
 using ProductCatalog.Application.Services.IServices;
 
 namespace ProductCatalog.Api.Controllers
@@ -15,14 +16,31 @@ namespace ProductCatalog.Api.Controllers
                 return BadRequest(ModelState);
 
             var productResponse = await productService.CreateProductAsync(productRequest);
-            return CreatedAtAction(nameof(GetAllProducts), new { id = productResponse.Id }, productResponse);
+            return CreatedAtAction(nameof(GetAllProducts), new { id = productResponse.Id + 1 }, productResponse);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllProducts()
+        public async Task<IActionResult> GetAllProducts(int page = 1, int pageSize = 5)
         {
-            var products = await productService.GetProductsAsync();
-            return Ok(products);
+            if (page < 1) page = 1;
+            if (pageSize < 1) pageSize = 5;
+
+            var products = await productService.GetProductsAsync() ?? new List<ProductResponseDto>();
+
+            // Paginação
+            var paginatedProducts = products
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return Ok(new
+            {
+                TotalCount = products.Count(),
+                Page = page,
+                PageSize = pageSize,
+                Products = paginatedProducts
+            });
         }
+
     }
 }

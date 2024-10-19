@@ -16,7 +16,7 @@ namespace ProductCatalog.Api.Controllers
                 return BadRequest(ModelState);
 
             var productResponse = await productService.CreateProductAsync(productRequest);
-            return CreatedAtAction(nameof(GetAllProducts), new { id = productResponse.Id + 1 }, productResponse);
+            return CreatedAtAction(nameof(GetAllProducts), new { id = productResponse.Id }, productResponse);
         }
 
         [HttpGet]

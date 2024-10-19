@@ -1,7 +1,9 @@
 ﻿using ProductCatalog.Domain.AuxModels;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-namespace Product.Domain.DTOs;
+
+
+namespace ProductCatalog.Application.Dto.Request;
 
 public sealed class ProductRequestDTO
 {

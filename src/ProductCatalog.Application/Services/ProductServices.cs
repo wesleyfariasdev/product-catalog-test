@@ -9,7 +9,7 @@ namespace ProductCatalog.Application.Services
 {
     public class ProductServices(IMapper mapper, IProductRepository productRepository) : IProductServices
     {
-        public async Task<ProductResponseDto> CreateProduct(ProductRequestDTO productRequest)
+        public async Task<ProductResponseDto> CreateProductAsync(ProductRequestDTO productRequest)
         {
             var product = mapper.Map<Product>(productRequest);
             return mapper.Map<ProductResponseDto>(await productRepository.CreateProduct(product));

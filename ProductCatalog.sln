@@ -5,15 +5,15 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.Domain", "src\ProductCatalog.Domain\ProductCatalog.Domain.csproj", "{A40C7F6A-929F-4A4C-A558-55898091399D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Infra.Data", "src\ProductCatalog.Infra.Data\ProductCatalog.Infra.Data.csproj", "{097851CE-9D83-4AB3-9D33-3337C2632B4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.Infra.Data", "src\ProductCatalog.Infra.Data\ProductCatalog.Infra.Data.csproj", "{097851CE-9D83-4AB3-9D33-3337C2632B4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Infra.IoC", "src\ProductCatalog.Infra.IoC\ProductCatalog.Infra.IoC.csproj", "{C7B55054-0F63-4518-A462-34B8922D6E96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.Infra.IoC", "src\ProductCatalog.Infra.IoC\ProductCatalog.Infra.IoC.csproj", "{C7B55054-0F63-4518-A462-34B8922D6E96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Application", "src\ProductCatalog.Application\ProductCatalog.Application.csproj", "{D8530ED4-14A2-4D9C-AA62-F7EB125610B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.Application", "src\ProductCatalog.Application\ProductCatalog.Application.csproj", "{D8530ED4-14A2-4D9C-AA62-F7EB125610B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Api", "ProductCatalog.Api\ProductCatalog.Api.csproj", "{97DB56CC-21D0-4360-99C3-3BFDBA9C92C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.Api", "ProductCatalog.Api\ProductCatalog.Api.csproj", "{97DB56CC-21D0-4360-99C3-3BFDBA9C92C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Web", "ProductCatalog.Web\ProductCatalog.Web.csproj", "{D7173421-94F4-4CAA-80B0-6D5CB472CE85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog.Web", "ProductCatalog.Web\ProductCatalog.Web.csproj", "{D7173421-94F4-4CAA-80B0-6D5CB472CE85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

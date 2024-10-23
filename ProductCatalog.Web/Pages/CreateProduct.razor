@@ -1,0 +1,86 @@
+﻿@page "/criar-produto"
+@using ProductCatalog.Application.Dto.Request
+@using ProductCatalog.Domain.AuxModels
+@using System.Text.Json
+@using System.Text
+@using ProductCatalog.Web.Services
+
+@inject ProductService ProductService
+
+<h3>Adicionar novo produto</h3>
+
+<EditForm Model="newProduct" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="card">
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <InputText id="name" class="form-control" @bind-Value="newProduct.Name" />
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <InputNumber id="price" class="form-control" @bind-Value="newProduct.Price" />
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <InputTextArea id="description" class="form-control" @bind-Value="newProduct.Description" />
+            </div>
+
+            <div class="mb-3">
+                <label for="productType" class="form-label">Product Type</label>
+                <InputSelect id="productType" class="form-control" @bind-Value="newProduct.ProductType">
+                    @foreach (var type in Enum.GetValues<ProductType>())
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Product</button>
+        </div>
+    </div>
+
+</EditForm>
+
+@if (!string.IsNullOrEmpty(statusMessage))
+{
+    <div class="alert alert-info mt-3">@statusMessage</div>
+}
+
+
+@code {
+    private ProductRequestDTO newProduct = new();
+
+    private string statusMessage = string.Empty;
+
+    private async Task HandleValidSubmit()
+    {
+        try
+        {
+             var jsonContent = new StringContent(
+                JsonSerializer.Serialize(newProduct),
+                Encoding.UTF8,
+                "application/json"
+            );
+
+            var response = await ProductService.CreateNewProductAsync(newProduct);
+
+            if (response != null)
+            {
+                statusMessage = "Product created successfully!";
+            }
+            else
+            {
+                statusMessage = $"Failed to create product";
+            }
+        }
+        catch (Exception ex)
+        {
+            statusMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+}

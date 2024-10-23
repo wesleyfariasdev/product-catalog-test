@@ -10,7 +10,7 @@ namespace ProductCatalog.Infra.Data.Repository
 
         public Task<Product> CreateProduct(Product product)
         {
-            product = new Product(_nextId++, product.Name, product.Price, product.Description, product.ProductType, DateTime.UtcNow);
+            product = new Product(_nextId++, product.Name, product.Price, product.Description, product.ProductType);
             _products.Add(product);
             return Task.FromResult(product);
         }

@@ -18,11 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProductCatalog.Api\ProductCatalog.Api.csproj" />
-    <ProjectReference Include="..\src\ProductCatalog.Application\ProductCatalog.Application.csproj" />
+    <ProjectReference Include="..\..\ProductCatalog.Api\ProductCatalog.Api.csproj" />
+    <ProjectReference Include="..\..\src\ProductCatalog.Application\ProductCatalog.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+
+	<ItemGroup>
     <Using Include="Xunit" />
   </ItemGroup>
 

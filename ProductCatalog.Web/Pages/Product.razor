@@ -1,0 +1,90 @@
+﻿@page "/produtos"
+
+@using ProductCatalog.Application.Dto.Response
+@using ProductCatalog.Web.Response
+@using ProductCatalog.Web.Services
+
+@inject ProductService ProductService
+
+<PageTitle>Produtos</PageTitle>
+
+<h1>Lista de produtos (@productResponse.TotalCount)</h1>
+
+<p>Lista de produtos cadastrados</p>
+
+@if (products.Count() == 0)
+{
+    <div class="alert alert-warning" role="alert">
+        Nenhum produto cadastrado
+    </div>
+}
+else
+{
+    if (products.Count() != 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Descrição</th>
+                    <th>Tipo de Produto</th>
+                    <th>Data de Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in products)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td>@product.Name</td>
+                        <td>@product.Price</td>
+                        <td>@product.Description</td>
+                        <td>@product.ProductType</td>
+                        <td>@product.RegistrationDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                    <a class="page-link" @onclick="() => LoadProducts(currentPage - 1)" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    var pageNumber = i;
+                    <li class="page-item @(currentPage == pageNumber ? "active" : "")">
+                        <a class="page-link" @onclick="@(() => LoadProducts(pageNumber))">@pageNumber</a>
+                    </li>
+                }
+                <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                    <a class="page-link" @onclick="() => LoadProducts(currentPage + 1)">Next</a>
+                </li>
+            </ul>
+        </nav>
+    }
+}
+
+@code {
+    private ProductResponse productResponse = new ProductResponse();
+    private IEnumerable<ProductResponseDto> products = new List<ProductResponseDto>();
+    private int currentPage = 1;
+    private int pageSize = 5;
+    private int totalPages = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProducts(currentPage);
+    }
+
+    private async Task LoadProducts(int page)
+    {
+        productResponse = await ProductService.GetProductsAsync(page, pageSize);
+        products = productResponse?.Products ?? new List<ProductResponseDto>();
+        totalPages = (int)Math.Ceiling((double)(productResponse?.TotalCount ?? 0) / pageSize);
+        currentPage = page;
+    }
+}

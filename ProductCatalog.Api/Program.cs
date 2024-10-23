@@ -2,6 +2,16 @@ using ProductCatalog.Infra.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
+
 // Add services to the container.
 builder.Services.AddInfrastructure();
 
@@ -18,6 +28,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Use o middleware CORS
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 

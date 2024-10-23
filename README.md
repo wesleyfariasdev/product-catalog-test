@@ -19,8 +19,3 @@ Sendo assim a  empresa deseja implementar um sistema para ter mais confiabilidad
 - [.NET (latest)](https://dotnet.microsoft.com/en-us/download).
 - [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor).
 - [EF Core](https://github.com/dotnet/efcore).
-
-## Quais recursos foram utilizados
-- Organização do código - *Clean Architecture*;
-- Testes Unitários - *XUnit*
-- *SOLID e separação de responsabilidades*

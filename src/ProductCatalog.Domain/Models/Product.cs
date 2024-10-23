@@ -4,24 +4,24 @@ namespace ProductCatalog.Domain.Models
 {
     public sealed class Product
     {
-        public Product(int id, string name, decimal price, string description, ProductType productType, DateTime registrationDate)
+        public Product(int id, string name, decimal price, string description, ProductType productType)
         {
             Id = id;
             Name = name;
             Price = price;
             Description = description;
             ProductType = productType;
-            RegistrationDate = registrationDate;
+            RegistrationDate = DateTime.Now;
         }
 
-        public Product(string name, decimal price, string description, ProductType productType, DateTime registrationDate)
+        public Product(string name, decimal price, string description, ProductType productType)
         {
             Name = name;
             Price = price;
             Description = description;
             ProductType = productType;
-            RegistrationDate = registrationDate;
-        } 
+            RegistrationDate = DateTime.Now;
+        }
 
         public int Id { get; private set; }
         public string Name { get; private set; }
